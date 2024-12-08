@@ -17,13 +17,13 @@
         }
         .container {
             display: grid;
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: 350px 420px 420px; /* Larguras fixas para as 3 colunas */
             gap: 20px;
             background-color: #f9f9f9;
             border: 1px solid #ddd;
             border-radius: 10px;
             padding: 20px;
-            max-width: 900px;
+            max-width: 1300px;
             width: 100%;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
@@ -57,7 +57,7 @@
             background-color: #4a148c;
         }
         .list-container {
-            height: 300px; /* Altura fixa para a lista */
+            height: 420px; /* Altura fixa para a lista */
             overflow-y: auto; /* Ativa a rolagem vertical */
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -73,8 +73,7 @@
             border-bottom: none;
         }
         .details-container {
-            grid-column: span 2;
-            height: 150px; /* Altura fixa para os detalhes */
+            height: 455px; /* Altura fixa para os detalhes */
             overflow-y: auto; /* Ativa a rolagem vertical */
             border: 1px solid #ddd;
             padding: 10px;
@@ -87,13 +86,20 @@
 </head>
 <body>
     <div class="container">
-        <!-- Coluna Esquerda -->
+        <!-- Coluna Esquerda: Lista de Cânticos -->
         <div>
             <div class="form-group">
                 <input type="text" id="search" placeholder="Pesquisar...">
             </div>
+            <div class="list-container" id="listContainer">
+                <!-- A lista de cânticos será carregada aqui -->
+            </div>
+        </div>
+
+        <!-- Coluna do Meio: Campos de Edição -->
+        <div>
             <div class="form-group">
-                <textarea id="estrofes" rows="2" placeholder="Estrofes..."></textarea>
+                <textarea id="estrofes" rows="16" placeholder="Estrofes..."></textarea>
             </div>
             <div class="form-group">
                 <input type="text" id="momento" placeholder="Momento...">
@@ -102,36 +108,35 @@
                 <input type="text" id="livroNumero" placeholder="Livro-Número...">
             </div>
             <div class="form-group">
-                <input type="text" id="idioma" placeholder="Idioma..." value="Portugues">
+                <input type="text" id="idioma" placeholder="Idioma...">
             </div>
             <div class="actions">
                 <button id="adicionar">Adicionar</button>
+                <button id="editar">Editar</button>
+                <button id="salvar">Salvar</button>
                 <button id="remover">Remover</button>
             </div>
         </div>
 
-        <!-- Coluna Direita -->
+        <!-- Coluna Direita: Detalhes do Item Selecionado -->
         <div>
-            <div class="list-container" id="listContainer">
-                <!-- Os itens da lista serão carregados aqui -->
+            <div class="details-container" id="detailsContainer">
+                Clique em um item para ver os detalhes.
             </div>
-        </div>
-
-        <!-- Detalhes -->
-        <div class="details-container" id="detailsContainer">
-            Clique em um item para ver os detalhes.
         </div>
     </div>
 
     <script>
         const adicionarBtn = document.getElementById('adicionar');
+        const editarBtn = document.getElementById('editar');
+        const salvarBtn = document.getElementById('salvar');
         const removerBtn = document.getElementById('remover');
         const listContainer = document.getElementById('listContainer');
         const detailsContainer = document.getElementById('detailsContainer');
         const searchInput = document.getElementById('search');
 
         let localData = []; // Dados do JSON local
-        let selectedItemIndex = null; // Index do item selecionado
+        let selectedItemIndex = null; // Índice do item selecionado
 
         // Carregar dados do JSON local ao iniciar
         async function loadLocalData() {
@@ -144,68 +149,131 @@
             }
         }
 
-        // Atualiza a lista exibida no lado direito
-        function updateList() {
-            listContainer.innerHTML = '';
-            // Ordena os dados por título
-            localData.sort((a, b) => a.titulo.localeCompare(b.titulo));
-            localData.forEach((item, index) => {
-                const div = document.createElement('div');
-                div.classList.add('list-item');
-                div.textContent = item.titulo;
-                div.addEventListener('click', () => {
-                    selectedItemIndex = index;
-                    detailsContainer.innerHTML = `
-                        <strong>Título:</strong> ${item.titulo}<br>
-                        <strong>Estrofes:</strong> ${item.estrofes}<br>
-                        <strong>Momento:</strong> ${item.momento}<br>
-                        <strong>Livro-Número:</strong> ${item.livro_numero}<br>
-                        <strong>Idioma:</strong> ${item.idioma}
-                    `;
-                });
-                listContainer.appendChild(div);
-            });
-        }
+        // Função de filtro
+searchInput.addEventListener('input', () => {
+    const searchQuery = searchInput.value.toLowerCase();
+    const filteredData = localData.filter(item => item.titulo.toLowerCase().includes(searchQuery));
+
+    updateList(filteredData); // Atualiza a lista com os itens filtrados
+});
+
+// Atualiza a lista de cânticos exibida no frontend
+function updateList(data = localData) {
+    listContainer.innerHTML = ''; // Limpa a lista atual
+
+    // Ordena os dados por título
+    data.sort((a, b) => a.titulo.localeCompare(b.titulo));
+
+    // Adiciona cada item da lista à interface
+    data.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.classList.add('list-item');
+        div.textContent = item.titulo;
+        div.addEventListener('click', () => {
+            selectedItemIndex = index;
+            // Exibe os detalhes do item selecionado
+            detailsContainer.innerHTML = `
+                <strong>Título:</strong> ${item.titulo}<br>
+                <strong>Estrofes:</strong><br><pre>${item.estrofes}</pre><br>
+                <strong>Momento:</strong> ${item.momento}<br>
+                <strong>Livro-Número:</strong> ${item.livro_numero}<br>
+                <strong>Idioma:</strong> ${item.idioma}
+            `;
+        });
+        listContainer.appendChild(div);
+    });
+}
 
         // Função para adicionar ou editar um cântico
-        adicionarBtn.addEventListener('click', () => {
-            const titulo = searchInput.value.trim(); // Usa o campo de pesquisa como título
-            if (!titulo) {
-                alert("Por favor, insira um título válido!");
+adicionarBtn.addEventListener('click', () => {
+    const titulo = searchInput.value.trim(); // Usa o campo de pesquisa como título
+    if (!titulo) {
+        alert("Por favor, insira um título válido!");
+        return;
+    }
+
+    // Verifica se o título já existe
+    const existsIndex = localData.findIndex(item => item.titulo.toLowerCase() === titulo.toLowerCase());
+
+    const estrofes = document.getElementById('estrofes').value;
+    const momento = document.getElementById('momento').value;
+    const livroNumero = document.getElementById('livroNumero').value;
+    const idioma = document.getElementById('idioma').value;
+
+    const newItem = { titulo, estrofes, momento, livro_numero: livroNumero, idioma };
+
+    if (existsIndex !== -1) {
+        // Se o título existe, edita o item
+        localData[existsIndex] = newItem;
+        alert("Cântico editado com sucesso!");
+    } else {
+        // Caso contrário, adiciona como novo
+        localData.push(newItem);
+        alert("Cântico adicionado com sucesso!");
+    }
+
+    // Atualiza a lista após a alteração
+    updateList();
+
+    // Limpar os campos após adicionar ou editar
+    clearInputs();
+
+    // Atualizar o JSON com a nova lista
+    fetch('process.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            action: 'adicionar',
+            titulo,
+            estrofes,
+            momento,
+            livro_numero: livroNumero,
+            idioma
+        })
+    })
+    .then(res => res.json())
+    .then(data => console.log(data.message))
+    .catch(err => console.error(err));
+});
+
+// Função para limpar os campos de entrada
+function clearInputs() {
+    searchInput.value = ''; // Limpar campo de pesquisa
+    document.getElementById('estrofes').value = ''; // Limpar campo de estrofes
+    document.getElementById('momento').value = ''; // Limpar campo de momento
+    document.getElementById('livroNumero').value = ''; // Limpar campo de livro-número
+    document.getElementById('idioma').value = 'Portugues'; // Limpar campo de idioma
+}
+
+
+        // Editar o cântico
+        editarBtn.addEventListener('click', () => {
+            if (selectedItemIndex === null) {
+                alert("Por favor, selecione um cântico para editar.");
                 return;
             }
 
-            // Verifica se o título já existe
-            const existsIndex = localData.findIndex(item => item.titulo.toLowerCase() === titulo.toLowerCase());
+            const item = localData[selectedItemIndex];
+            searchInput.value = item.titulo;
+            document.getElementById('estrofes').value = item.estrofes;
+            document.getElementById('momento').value = item.momento;
+            document.getElementById('livroNumero').value = item.livro_numero;
+            document.getElementById('idioma').value = item.idioma;
+        });
 
+        // Salvar cântico editado
+        salvarBtn.addEventListener('click', () => {
+            if (selectedItemIndex === null) {
+                alert("Nenhum cântico foi selecionado para salvar.");
+                return;
+            }
+
+            const titulo = searchInput.value.trim();
             const estrofes = document.getElementById('estrofes').value;
             const momento = document.getElementById('momento').value;
             const livroNumero = document.getElementById('livroNumero').value;
             const idioma = document.getElementById('idioma').value;
 
-            const newItem = { titulo, estrofes, momento, livro_numero: livroNumero, idioma };
-
-            if (existsIndex !== -1) {
-                // Se o título existe, edita o item
-                localData[existsIndex] = newItem;
-                alert("Cântico editado com sucesso!");
-            } else {
-                // Caso contrário, adiciona como novo
-                localData.push(newItem);
-                alert("Cântico adicionado com sucesso!");
-            }
-
-            // Atualiza a lista após a alteração
-            updateList();
-
-            // Limpar os campos após adicionar ou editar
-            searchInput.value = '';
-            document.getElementById('estrofes').value = '';
-            document.getElementById('momento').value = '';
-            document.getElementById('livroNumero').value = '';
-            document.getElementById('idioma').value = 'Portugues';
-
-            // Atualizar o JSON com a nova lista
             fetch('process.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -218,68 +286,41 @@
                     idioma
                 })
             })
-            .then(res => res.json())
-            .then(data => console.log(data.message))
-            .catch(err => console.error(err));
+                .then(res => res.json())
+                .then(data => {
+                    alert(data.message);
+                    loadLocalData(); // Recarrega a lista
+                })
+                .catch(err => console.error(err));
         });
 
-        // Função para remover um cântico
+        // Remover cântico
         removerBtn.addEventListener('click', () => {
             if (selectedItemIndex === null) {
                 alert("Por favor, selecione um cântico para remover.");
                 return;
             }
 
-            const confirmDelete = confirm("Tem certeza que deseja remover este cântico?");
-            if (confirmDelete) {
-                // Remove o item do JSON
-                localData.splice(selectedItemIndex, 1);
+            const titulo = localData[selectedItemIndex].titulo;
 
-                // Atualiza o JSON local
-                fetch('process.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        action: 'salvar',
-                        data: localData
-                    })
+            fetch('process.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'remover',
+                    titulo
                 })
+            })
                 .then(res => res.json())
                 .then(data => {
-                    alert("Cântico removido com sucesso!");
-                    // Atualiza a lista e limpa os detalhes
-                    updateList();
-                    detailsContainer.innerHTML = 'Clique em um item para ver os detalhes.';
+                    alert(data.message);
+                    loadLocalData(); // Recarrega a lista
                 })
                 .catch(err => console.error(err));
-            }
         });
 
-        // Carregar dados ao inicializar
+        // Carregar dados ao iniciar
         loadLocalData();
-
-        // Pesquisa em tempo real
-        searchInput.addEventListener('input', () => {
-            const term = searchInput.value.toLowerCase();
-            const filteredData = localData.filter(item => item.titulo.toLowerCase().includes(term));
-            listContainer.innerHTML = '';
-            filteredData.forEach(item => {
-                const div = document.createElement('div');
-                div.classList.add('list-item');
-                div.textContent = item.titulo;
-                div.addEventListener('click', () => {
-                    selectedItemIndex = localData.indexOf(item);
-                    detailsContainer.innerHTML = `
-                        <strong>Título:</strong> ${item.titulo}<br>
-                        <strong>Estrofes:</strong> ${item.estrofes}<br>
-                        <strong>Momento:</strong> ${item.momento}<br>
-                        <strong>Livro-Número:</strong> ${item.livro_numero}<br>
-                        <strong>Idioma:</strong> ${item.idioma}
-                    `;
-                });
-                listContainer.appendChild(div);
-            });
-        });
     </script>
 </body>
 </html>

@@ -1,54 +1,46 @@
 <?php
-$file = 'cantico.json';
+header('Content-Type: application/json');
+$dataFile = 'cantico.json'; // Caminho do arquivo JSON onde os dados serão armazenados
 
-// Carrega os dados do arquivo JSON
-function loadData() {
-    global $file;
-    if (!file_exists($file)) {
-        return [];
+// Lê os dados enviados pelo frontend
+$request = json_decode(file_get_contents('php://input'), true);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $action = $request['action'];
+    $jsonData = file_exists($dataFile) ? json_decode(file_get_contents($dataFile), true) : [];
+
+    if ($action === 'adicionar') {
+        $novoItem = [
+            "titulo" => $request['titulo'],
+            "estrofes" => $request['estrofes'],
+            "momento" => $request['momento'],
+            "livro_numero" => $request['livro_numero'],
+            "idioma" => $request['idioma']
+        ];
+
+        // Verifica se já existe um item com o mesmo título
+        $index = array_search($novoItem['titulo'], array_column($jsonData, 'titulo'));
+        if ($index !== false) {
+            $jsonData[$index] = $novoItem; // Atualiza se já existe
+        } else {
+            $jsonData[] = $novoItem; // Adiciona novo
+        }
+
+        file_put_contents($dataFile, json_encode($jsonData, JSON_PRETTY_PRINT));
+        echo json_encode(["message" => "Cântico salvo com sucesso!"]);
+    } elseif ($action === 'remover') {
+        $titulo = $request['titulo'];
+        $jsonData = array_filter($jsonData, function ($item) use ($titulo) {
+            return $item['titulo'] !== $titulo;
+        });
+
+        file_put_contents($dataFile, json_encode(array_values($jsonData), JSON_PRETTY_PRINT));
+        echo json_encode(["message" => "Cântico removido com sucesso!"]);
+    } elseif ($action === 'salvar') {
+        file_put_contents($dataFile, json_encode($request['data'], JSON_PRETTY_PRINT));
+        echo json_encode(["message" => "Dados atualizados com sucesso!"]);
     }
-    $data = file_get_contents($file);
-    return json_decode($data, true) ?: [];
-}
-
-// Salva os dados no arquivo JSON
-function saveData($data) {
-    global $file;
-    file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
-}
-
-// Processa as requisições
-$input = json_decode(file_get_contents('php://input'), true);
-if (!$input || !isset($input['action'])) {
-    echo json_encode(['message' => 'Ação inválida.']);
-    exit;
-}
-
-$action = $input['action'];
-$data = loadData();
-
-if ($action === 'adicionar') {
-    $data[] = [
-        'momento' => $input['momento'] ?? '',
-        'livro_numero' => $input['livro_numero'] ?? '',
-        'idioma' => $input['idioma'] ?? 'Portugues',
-        'titulo' => $input['titulo'] ?? '',
-        'estrofes' => $input['estrofes'] ?? ''
-    ];
-    saveData($data);
-    echo json_encode(['message' => 'Cântico adicionado com sucesso.']);
-} elseif ($action === 'remover') {
-    // Remover o item baseado no índice
-    $index = $input['index'] ?? null;
-    if ($index !== null && isset($data[$index])) {
-        array_splice($data, $index, 1); // Remove o item no índice fornecido
-        saveData($data);
-        echo json_encode(['message' => 'Cântico removido com sucesso.']);
-    } else {
-        echo json_encode(['message' => 'Item não encontrado.']);
-    }
-} elseif ($action === 'listar') {
-    echo json_encode($data);
 } else {
-    echo json_encode(['message' => 'Ação desconhecida.']);
+    echo json_encode(["message" => "Método não suportado."]);
 }
+?>
