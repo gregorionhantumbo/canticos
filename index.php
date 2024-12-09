@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,9 +16,11 @@
             height: 100vh;
             background-color: #f3f3f3;
         }
+
         .container {
             display: grid;
-            grid-template-columns: 350px 420px 420px; /* Larguras fixas para as 3 colunas */
+            grid-template-columns: 350px 420px 420px;
+            /* Larguras fixas para as 3 colunas */
             gap: 20px;
             background-color: #f9f9f9;
             border: 1px solid #ddd;
@@ -27,25 +30,32 @@
             width: 100%;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
+
         .form-group {
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
-        textarea, input, button {
+
+        textarea,
+        input,
+        button {
             font-size: 16px;
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
         }
+
         textarea {
             resize: none;
         }
+
         .actions {
             display: flex;
             gap: 10px;
             justify-content: center;
         }
+
         button {
             background-color: #6a1b9a;
             color: white;
@@ -53,28 +63,37 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
         button:hover {
             background-color: #4a148c;
         }
+
         .list-container {
-            height: 420px; /* Altura fixa para a lista */
-            overflow-y: auto; /* Ativa a rolagem vertical */
+            height: 420px;
+            /* Altura fixa para a lista */
+            overflow-y: auto;
+            /* Ativa a rolagem vertical */
             border: 1px solid #ddd;
             border-radius: 5px;
             padding: 10px;
             background-color: #fff;
         }
+
         .list-item {
             padding: 10px;
             border-bottom: 1px solid #ddd;
             cursor: pointer;
         }
+
         .list-item:last-child {
             border-bottom: none;
         }
+
         .details-container {
-            height: 455px; /* Altura fixa para os detalhes */
-            overflow-y: auto; /* Ativa a rolagem vertical */
+            height: 455px;
+            /* Altura fixa para os detalhes */
+            overflow-y: auto;
+            /* Ativa a rolagem vertical */
             border: 1px solid #ddd;
             padding: 10px;
             border-radius: 5px;
@@ -84,6 +103,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <!-- Coluna Esquerda: Lista de Cânticos -->
@@ -150,100 +170,111 @@
         }
 
         // Função de filtro
-searchInput.addEventListener('input', () => {
-    const searchQuery = searchInput.value.toLowerCase();
-    const filteredData = localData.filter(item => item.titulo.toLowerCase().includes(searchQuery));
+        searchInput.addEventListener('input', () => {
+            const searchQuery = searchInput.value.toLowerCase();
+            const filteredData = localData.filter(item => item.titulo.toLowerCase().includes(searchQuery));
 
-    updateList(filteredData); // Atualiza a lista com os itens filtrados
-});
+            updateList(filteredData); // Atualiza a lista com os itens filtrados
+        });
 
-// Atualiza a lista de cânticos exibida no frontend
-function updateList(data = localData) {
-    listContainer.innerHTML = ''; // Limpa a lista atual
+        // Atualiza a lista de cânticos exibida no frontend
+        function updateList(data = localData) {
+            listContainer.innerHTML = ''; // Limpa a lista atual
 
-    // Ordena os dados por título
-    data.sort((a, b) => a.titulo.localeCompare(b.titulo));
+            // Ordena os dados por título
+            data.sort((a, b) => a.titulo.localeCompare(b.titulo));
 
-    // Adiciona cada item da lista à interface
-    data.forEach((item, index) => {
-        const div = document.createElement('div');
-        div.classList.add('list-item');
-        div.textContent = item.titulo;
-        div.addEventListener('click', () => {
-            selectedItemIndex = index;
-            // Exibe os detalhes do item selecionado
-            detailsContainer.innerHTML = `
+            // Adiciona cada item da lista à interface
+            data.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.classList.add('list-item');
+                div.textContent = item.titulo;
+                div.addEventListener('click', () => {
+                    selectedItemIndex = index;
+                    // Exibe os detalhes do item selecionado
+                    detailsContainer.innerHTML = `
                 <strong>Título:</strong> ${item.titulo}<br>
                 <strong>Estrofes:</strong><br><pre>${item.estrofes}</pre><br>
                 <strong>Momento:</strong> ${item.momento}<br>
                 <strong>Livro-Número:</strong> ${item.livro_numero}<br>
                 <strong>Idioma:</strong> ${item.idioma}
             `;
-        });
-        listContainer.appendChild(div);
-    });
-}
+                });
+                listContainer.appendChild(div);
+            });
+        }
 
         // Função para adicionar ou editar um cântico
-adicionarBtn.addEventListener('click', () => {
-    const titulo = searchInput.value.trim(); // Usa o campo de pesquisa como título
-    if (!titulo) {
-        alert("Por favor, insira um título válido!");
-        return;
-    }
+        adicionarBtn.addEventListener('click', () => {
+            let titulo = searchInput.value.trim(); // Usa o campo de pesquisa como título
+            if (!titulo) {
+                alert("Por favor, insira um título válido!");
+                return;
+            }
+            titulo = titulo.toUpperCase(); // Converte o título para uppercase
 
-    // Verifica se o título já existe
-    const existsIndex = localData.findIndex(item => item.titulo.toLowerCase() === titulo.toLowerCase());
+            // Verifica se o título já existe
+            const existsIndex = localData.findIndex(item => item.titulo.toLowerCase() === titulo.toLowerCase());
 
-    const estrofes = document.getElementById('estrofes').value;
-    const momento = document.getElementById('momento').value;
-    const livroNumero = document.getElementById('livroNumero').value;
-    const idioma = document.getElementById('idioma').value;
+            const estrofes = document.getElementById('estrofes').value;
+            const momento = document.getElementById('momento').value;
+            const livroNumero = document.getElementById('livroNumero').value;
+            const idioma = document.getElementById('idioma').value;
 
-    const newItem = { titulo, estrofes, momento, livro_numero: livroNumero, idioma };
+            const newItem = {
+                titulo,
+                estrofes,
+                momento,
+                livro_numero: livroNumero,
+                idioma
+            };
 
-    if (existsIndex !== -1) {
-        // Se o título existe, edita o item
-        localData[existsIndex] = newItem;
-        alert("Cântico editado com sucesso!");
-    } else {
-        // Caso contrário, adiciona como novo
-        localData.push(newItem);
-        alert("Cântico adicionado com sucesso!");
-    }
+            if (existsIndex !== -1) {
+                // Se o título existe, edita o item
+                localData[existsIndex] = newItem;
+                alert("Cântico editado com sucesso!");
+            } else {
+                // Caso contrário, adiciona como novo
+                localData.push(newItem);
+                alert("Cântico adicionado com sucesso!");
+            }
 
-    // Atualiza a lista após a alteração
-    updateList();
+            // Atualiza a lista após a alteração
+            updateList();
 
-    // Limpar os campos após adicionar ou editar
-    clearInputs();
+            // Limpar os campos após adicionar ou editar
+            clearInputs();
 
-    // Atualizar o JSON com a nova lista
-    fetch('process.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            action: 'adicionar',
-            titulo,
-            estrofes,
-            momento,
-            livro_numero: livroNumero,
-            idioma
-        })
-    })
-    .then(res => res.json())
-    .then(data => console.log(data.message))
-    .catch(err => console.error(err));
-});
+            // Atualizar o JSON com a nova lista
+            fetch('process.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: 'adicionar',
+                        titulo,
+                        estrofes,
+                        momento,
+                        livro_numero: livroNumero,
+                        idioma
+                    })
+                })
+                .then(res => res.json())
+                .then(data => console.log(data.message))
+                .catch(err => console.error(err));
+                //titulo = titulo.toUpperCase(); // Converte o título para uppercase
 
-// Função para limpar os campos de entrada
-function clearInputs() {
-    searchInput.value = ''; // Limpar campo de pesquisa
-    document.getElementById('estrofes').value = ''; // Limpar campo de estrofes
-    document.getElementById('momento').value = ''; // Limpar campo de momento
-    document.getElementById('livroNumero').value = ''; // Limpar campo de livro-número
-    document.getElementById('idioma').value = 'Portugues'; // Limpar campo de idioma
-}
+        });
+
+        // Função para limpar os campos de entrada
+        function clearInputs() {
+            searchInput.value = ''; // Limpar campo de pesquisa
+            document.getElementById('estrofes').value = ''; // Limpar campo de estrofes
+            document.getElementById('momento').value = ''; // Limpar campo de momento
+            document.getElementById('livroNumero').value = ''; // Limpar campo de livro-número
+            document.getElementById('idioma').value = 'Portugues'; // Limpar campo de idioma
+        }
 
 
         // Editar o cântico
@@ -268,24 +299,29 @@ function clearInputs() {
                 return;
             }
 
+
             const titulo = searchInput.value.trim();
             const estrofes = document.getElementById('estrofes').value;
             const momento = document.getElementById('momento').value;
             const livroNumero = document.getElementById('livroNumero').value;
             const idioma = document.getElementById('idioma').value;
 
+            clearInputs();
+
             fetch('process.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    action: 'adicionar',
-                    titulo,
-                    estrofes,
-                    momento,
-                    livro_numero: livroNumero,
-                    idioma
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: 'adicionar',
+                        titulo,
+                        estrofes,
+                        momento,
+                        livro_numero: livroNumero,
+                        idioma
+                    })
                 })
-            })
                 .then(res => res.json())
                 .then(data => {
                     alert(data.message);
@@ -304,13 +340,15 @@ function clearInputs() {
             const titulo = localData[selectedItemIndex].titulo;
 
             fetch('process.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    action: 'remover',
-                    titulo
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        action: 'remover',
+                        titulo
+                    })
                 })
-            })
                 .then(res => res.json())
                 .then(data => {
                     alert(data.message);
@@ -323,4 +361,5 @@ function clearInputs() {
         loadLocalData();
     </script>
 </body>
+
 </html>
