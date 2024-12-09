@@ -171,11 +171,15 @@
 
         // Função de filtro
         searchInput.addEventListener('input', () => {
-            const searchQuery = searchInput.value.toLowerCase();
-            const filteredData = localData.filter(item => item.titulo.toLowerCase().includes(searchQuery));
+            const searchQuery = searchInput.value.trim().toUpperCase(); // Converte a busca para uppercase
+
+            const filteredData = localData.filter(item =>
+                item.titulo.toUpperCase().includes(searchQuery) // Compara com títulos em uppercase
+            );
 
             updateList(filteredData); // Atualiza a lista com os itens filtrados
         });
+
 
         // Atualiza a lista de cânticos exibida no frontend
         function updateList(data = localData) {
@@ -263,7 +267,7 @@
                 .then(res => res.json())
                 .then(data => console.log(data.message))
                 .catch(err => console.error(err));
-                //titulo = titulo.toUpperCase(); // Converte o título para uppercase
+            //titulo = titulo.toUpperCase(); // Converte o título para uppercase
 
         });
 

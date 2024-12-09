@@ -280,24 +280,108 @@
         "idioma": "Tsonga"
     },
     {
-        "titulo": "A MALANDZA YA HOSI yesu",
+        "titulo": "A MALANDZA YA HOSI YESU",
         "estrofes": "1 - A malandza ya Hosi Yesu\nLa'ma nga sungula ntirho,\nMa yo tinyiketa ngopfu A ku fambisa ntirho.\n\nCoro: Hlaya, hlaya, hlaya, hlaya timhaka ta Yesu U ta hanyisa vanhu\nLava va lahlekeke. (bis)\n\n2 - Nambi Petro na yena Paulo\nKunwe na yena Yohane\nVa yo tinyikela ngopfu A ku fambisa tirho.\n\n3 - Nambi leswi va nga biwa\nNi ku hembeliwa mavunwa\nVa yo tinyiketa ngopfu A ku fambisa ntirho.",
         "momento": "",
         "livro_numero": "",
         "idioma": "Tsonga"
     },
     {
-        "titulo": "A MALANDZA YA HOSI Yesu",
-        "estrofes": "1 - A malandza ya Hosi Yesu\nLa'ma nga sungula ntirho,\nMa yo tinyiketa ngopfu A ku fambisa ntirho.\n\nCoro: Hlaya, hlaya, hlaya, hlaya timhaka ta Yesu U ta hanyisa vanhu\nLava va lahlekeke. (bis)\n\n2 - Nambi Petro na yena Paulo\nKunwe na yena Yohane\nVa yo tinyikela ngopfu A ku fambisa tirho.\n\n3 - Nambi leswi va nga biwa\nNi ku hembeliwa mavunwa\nVa yo tinyiketa ngopfu A ku fambisa ntirho.",
+        "titulo": "A HI TLANGELENI",
+        "estrofes": "1. Siku dra namunhla dri katekile\nHitita tlhangana a kunyonxeni\nMindringo mikulu himihlulile\nntamu wa kutlhasa hi wu kumile.\n\nTekel: Ahitlangeleni, ahitlangeleni a siku ledri dra ntlhanganu weru mahlweni ka Hosi\n\n2. Siku dra namunhla hi le\u2019dra huluxo\nhi tlhanganisiwe hi ntamu wa Yesu\nahimuluveni hi mbilu ni moya\nKhanimambo Yesu muhuluxi weru\n\n3. Siku dra namunhla dri katekile\nDri hi nyika ntamu a vutomini\nahitlangeleni ku Hosi Yesu\nTatana lwe\u2019nene Mubekisi weru.",
         "momento": "",
         "livro_numero": "",
         "idioma": "Tsonga"
     },
     {
-        "titulo": "A MALANDZA YA HOSI YesU",
-        "estrofes": "1 - A malandza ya Hosi Yesu\nLa'ma nga sungula ntirho,\nMa yo tinyiketa ngopfu A ku fambisa ntirho.\n\nCoro: Hlaya, hlaya, hlaya, hlaya timhaka ta Yesu U ta hanyisa vanhu\nLava va lahlekeke. (bis)\n\n2 - Nambi Petro na yena Paulo\nKunwe na yena Yohane\nVa yo tinyikela ngopfu A ku fambisa tirho.\n\n3 - Nambi leswi va nga biwa\nNi ku hembeliwa mavunwa\nVa yo tinyiketa ngopfu A ku fambisa ntirho.",
+        "titulo": "YEHOVA WA FUMA",
+        "estrofes": "Coro: A hi fambeni, a hi fambeni, hi ya gandzela Hosi.\n\n1. Yehova wa fuma, \nu yambale Wu kulukumba.\n\n2. Matilo ma tsakile, \nmisava yi tlangela Hosi.\n\n3. Ku kwetsima ka Wena\nYehova, hi ku rhula Hosi.\n\n4. Yehova hi munene, a fuma\nhi ku rhula Hosi.\n\n5. Tanani, hi yimbelela, \nhi huwelela hi ku tsaka.\n\n6. Tanani, hi khisamela, \nYehova Muvumbi wa hina.\n\n7. Nwina valulami dzunisani\nVito la Yena ",
         "momento": "",
         "livro_numero": "",
-        "idioma": "Tsonga"
+        "idioma": ""
+    },
+    {
+        "titulo": "MBILU YANGA",
+        "estrofes": "1. Mbilo yanga ya kina,\nkina yi khensa Xikwembu xanga.\n\nTekel: Mina we Hosi, mina we Hosi,\nNdzi ta ku landzela (3x)\nNdzi lhaya ndzi ku ina.\n\n2. Mahlo yanga ma txuvuka\nHenhla ma khensa Xikwembu xanga\n\n3. Mavoko yanga ma khoma\nKhoma, ma khensa Xikwembu xanga\n\n4. Minenge yanga, ya famba,\nFamba, yi khensa Xikwembu xanga\n\n5. Nomo wanga wu ba nkulungwana, \nwu khensa Xikwembu xanga ",
+        "momento": "",
+        "livro_numero": "Oremos-73",
+        "idioma": ""
+    },
+    {
+        "titulo": "A HI FAMBENI, HI YA GANDZELA HOSI",
+        "estrofes": "Coro: A hi fambeni, a hi fambeni,\n hi ya gandzela Hosi.\n\n1 - Hosi wa fuma, u yambale wukulukumba.\n\n2 - Matilo ma tsakile, misava yi tlangela Hosi.\n\n3 - Ku kwetsima ka Wena Hosi, hi la ku nga heliki.\n\n4 - Hosi hi munene, a fuma hi ku rhula.\n\n5 - Tanani, yi yimbelela, hi huwelela hi ku tsaka.\n\n6 - Tanani hi khinsamela Hosi Muvumbi wa hina.\n\n7 - Nwina valulami dzunisani Vito la Yena.",
+        "momento": "Entrada",
+        "livro_numero": "Oremos-1",
+        "idioma": ""
+    },
+    {
+        "titulo": "A HI FAMBENI HINKWERHU",
+        "estrofes": "Coro: A hi fambeni hinkwerhu le ka Hosi Bava (3 v.)\n Ku tsakeni lo'ku nga heliki.\n\n1 - Hi tshama na Yesu, na Yena Bava (3 v.)\n Ku tsakeni lo'ku nga heliki.\n\n2 - A ku na livengo le ka Yena Bava (3 v.)\n Ku ni ku tsaka lo'ku nga heliki.\n\n3 - A ku na wukwele le ka Yena Bava (3 v.)\n Ku ni ku tsaka lo'ku nga heliki.",
+        "momento": "",
+        "livro_numero": "Oremos-2",
+        "idioma": ""
+    },
+    {
+        "titulo": "HA LAVA KU KU LANDZA",
+        "estrofes": "1 - ha lava ku ku landza, ina, ha kunene\n\nCoro: Xikwembu, hi lungisele ndlela leyi.\n\n2 - Ka hinkwaswo swa swinene, ina hi ta swi landza (2x)\n\n3 - Ndza swi lava ku ku rhandza, ina ha kunene (2x)\n\n4 - Ndza swi lava ku yingisa, ina ha kunene (2x).",
+        "momento": "",
+        "livro_numero": "Oremos-3",
+        "idioma": ""
+    },
+    {
+        "titulo": "HAMBI NDLELA YI KHUMILE",
+        "estrofes": "Coro: Hambi ndlela yi khumile\n N'ta mu landzela (3)\n Hambi ndlela yi khumile\n N'ta mu landzela\n Minkondzweni ya Yesu Hosi yanga.\n\n1 - Wutomi la mina\nnyamuntlha\na li fani ni la khale,\nNdzwalo wa swidjoho ni swivi\nwu swusiwile hinkwawo.\n\n2 - A ndzi li karhi ndzi tshama\nMunyameni lo'wukulu\na ndzi nga mu tivi Muhanyisi\na ndzi nga voni ku tsaka.\n\n3 - Kambe Moya wa Hosi\na wu ba mbilu ya mina\nna wu ndzi kombisa swidjoho\nni ndlela ya ku ponisiwa. \n\n4 - A ndzi langutela ka Yesu\nna ndzi tivula hinkwaswo,\na ndzi nghena hi ku pfumela\nTiveni la Ngati ya Yesu. \n",
+        "momento": "",
+        "livro_numero": "Oremos-4",
+        "idioma": ""
+    },
+    {
+        "titulo": "HI TELE KU TA GANDZELA WE HOSI",
+        "estrofes": "1 - Hi tele ku ta gandzela we Hosi (2x)\n Hi pfulele nyangwa yaku (2X)\n\nCoro: Hosi, hi nyike ntamu,\n wa ku ku landza, tsama na hina mbilwini (bis)\n\n2 - Hi teke ku ta lava we Hosi (2x).\n Hi tele ku ta twalisa we Hosi (2X)\n\n3 - Hi tele ku ta kombela we Hosi (2x).\nHi tele ku ta khongela we Hosi\n\n4 - Hi tele ku ta tlhangela we Hosi(2x).\nHi tele ku ta dzunisa we Hosi \n",
+        "momento": "",
+        "livro_numero": "Oremos-5",
+        "idioma": ""
+    },
+    {
+        "titulo": "HOSI HA NGHENA NDLWINI YAKU",
+        "estrofes": "Coro: sol.: Hosi ha nghena ndlwini yaku\nTodos: Hina ha nghena, a hi pfuleni timbilu\n Hina ha nghena. (2x)\n\n(4\u00aaVoz) \n1 - Hi ta twalisa hi ta dzunisa.\n\n2 - Hi ta gandzela hi ta khongela.\n\n3 - Hi ta khensa hi ta Tsaka.\n\n4 - Hi ta yimba hi ta tlangela.\n\n5 - Hi ta kombela hi ta nyikela.",
+        "momento": "",
+        "livro_numero": "Oremos-7",
+        "idioma": ""
+    },
+    {
+        "titulo": "HOSI NKULUKUMBA WERU",
+        "estrofes": "1 - Hosi, Nkulukumba werhu,\n Hi vone hi thlanganiki.\n Hi teli ku ta gandzela\n Wene, Hosi, ni Tatana.\n\nCoro: Ha ku kombela, we Hosi,\n Yamukela vana vaku,\n U va hanana tindjombo\n Ta wutomi le'byinene.\n\n2 - A xikhongoto xa Misa\nLe'xi nga gandzelo dzeru\nHa ku bekela namunthla\nXi yamukeli Tatana.\n\n3 - Katekisa tiku dzeru\nTamela mimoya yeru\nHosi, hi hanani ntamu\nWa ku tsama hi khongela.",
+        "momento": "",
+        "livro_numero": "Oremos-9",
+        "idioma": ""
+    },
+    {
+        "titulo": "HUWELELANI NWINA",
+        "estrofes": "Coro: \nHuwelelani nwina\n va tiko la ka Gaza\n Huwelelani hi ku tsaka\n mi dzunisa a Hosi ya nwina\n Leyi yi nga mi pfuna a ku heta\n a matxhume manbirhi ni ntlhanu\n wa malembe, huwelelani!\n\n1 - Murhangeli wa hina Yohane Mubabatise\nHi kombise ndlela\n\n2 - Tiko la mibangu hi la maxangu,\nHuwelela Hosi\n\n3 - Hambi loko tiko leli li dla mbitsi ni nhloti,\n Huwelela Hosi ",
+        "momento": "",
+        "livro_numero": "Oremos-10",
+        "idioma": ""
+    },
+    {
+        "titulo": "LE THEPELENI LA HOS",
+        "estrofes": "Coro: Le thepeleni la Hosi,\n hi fanele ku nghena hi ku tsaka\n le thepeleni la Hosi, hi fanele ku yimba aleluia.\n\n1 - S: vuya we Hosi ni matimba\n hi ta kota ku yimba.\n T: hi fanele ku yimba aleluia (2v)\n S: makholwa vuyani hi patsana hi yimba\n T: hi fanele ku yimba aleluia.\n\n2 - Nfumu wa Hosi hakunene wu tatile misava...\n makholwa vuyani hi patsana hi yimba\n hi fanele ku yimba aleluia\n\n3 - Misava yimpswha yi xikele,\n vuyani hi gandzela...\nmakholwa vuyani hi patsana hi yimba\n hi fanele ku yimba aleluia\n\n4 - Pfula we Hosi nyangwa yaku\n hi nghena hi gandzela...\n makholwa vuyani hi patsana hi yimba...\n\n5 - Tlakusa mahlo, lava Hosi, hi ta kota ku yimba...\n na hi gandzela hi fanele ku yimba...",
+        "momento": "",
+        "livro_numero": "Oremos-11",
+        "idioma": ""
+    },
+    {
+        "titulo": "NAMUNHLA HI SIKU LA HOSI",
+        "estrofes": "1 - Namunhla hi siku la Hosi, buyani,\nbuyani hi khongela.\n\nCoro: Buyani, buyani, buyani, buyani hi khongela (2x).\n\n2 - Namunhtlha hi siku la ku khongela...\n\n3 - Namuntlha hi siku la nhoxa,...\n\n4 - Namuntlha hi siku la ku tlhangela...\n\n5 - Namuntlha hi siku la ku yimba,,,,",
+        "momento": "",
+        "livro_numero": "Oremos-12",
+        "idioma": ""
+    },
+    {
+        "titulo": "NDRI RHANDRA KU NHINGENA",
+        "estrofes": "Coro: Ndri rhandra ku nhingena ndlwini\nya Nkulukumba.\nNdri nhingena ndlwini ya ku xwenga\nNdri rhandra ku khongota.\n\n1 - Nwananga nhingena ndlwini ya ku xwenga\nU drimuka a ku bekisa nawu wanga.\n\n2 - Nwananga bekisa tinfanelo taku\nU nga ti tshika u wela ndringweni wa nala.\n\n3 - Loko va ku ruka nambi va nga ku hleka\nU nga heli mbilu, khongota Hosi yaku.\n\n4 - Loko u yentxa hinkwaswo swileleto swa Hosi\nU ta yaveliwa swa nfumu wa matilo.",
+        "momento": "",
+        "livro_numero": "Oremos-13",
+        "idioma": ""
     }
 ]
