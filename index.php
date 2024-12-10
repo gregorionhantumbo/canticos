@@ -31,6 +31,13 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
+        #itemCount {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
         .form-group {
             display: flex;
             flex-direction: column;
@@ -114,6 +121,9 @@
             <div class="list-container" id="listContainer">
                 <!-- A lista de cânticos será carregada aqui -->
             </div>
+            <div class="form-group">
+                <label id="itemCount">Total de cânticos: 0</label>
+            </div>
         </div>
 
         <!-- Coluna do Meio: Campos de Edição -->
@@ -187,6 +197,9 @@
 
             // Ordena os dados por título
             data.sort((a, b) => a.titulo.localeCompare(b.titulo));
+
+            // Atualiza a contagem de itens
+            document.getElementById('itemCount').textContent = `Total de cânticos: ${data.length}`;
 
             // Adiciona cada item da lista à interface
             data.forEach((item, index) => {
