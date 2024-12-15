@@ -135,10 +135,10 @@
                 <input type="text" id="momento" placeholder="Momento...">
             </div>
             <div class="form-group">
-                <input type="text" id="livroNumero" placeholder="Livro-Número...">
+                <input type="text" id="livroNumero" placeholder="Livro-Número..." value="Oremos-">
             </div>
             <div class="form-group">
-                <input type="text" id="idioma" placeholder="Idioma...">
+                <input type="text" id="idioma" placeholder="Idioma..." value="Changana">
             </div>
             <div class="actions">
                 <button id="adicionar">Adicionar</button>
@@ -289,8 +289,8 @@
             searchInput.value = ''; // Limpar campo de pesquisa
             document.getElementById('estrofes').value = ''; // Limpar campo de estrofes
             document.getElementById('momento').value = ''; // Limpar campo de momento
-            document.getElementById('livroNumero').value = ''; // Limpar campo de livro-número
-            document.getElementById('idioma').value = 'Portugues'; // Limpar campo de idioma
+            document.getElementById('livroNumero').value = 'Oremos-'; // Limpar campo de livro-número
+            document.getElementById('idioma').value = 'Changana'; // Limpar campo de idioma
         }
 
 
