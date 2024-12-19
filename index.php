@@ -138,7 +138,7 @@
                 <input type="text" id="livroNumero" placeholder="Livro-Número..." value="Oremos-">
             </div>
             <div class="form-group">
-                <input type="text" id="idioma" placeholder="Idioma..." value="Changana">
+                <input type="text" id="idioma" placeholder="Idioma..." value="Portugues">
             </div>
             <div class="actions">
                 <button id="adicionar">Adicionar</button>
@@ -290,7 +290,7 @@
             document.getElementById('estrofes').value = ''; // Limpar campo de estrofes
             document.getElementById('momento').value = ''; // Limpar campo de momento
             document.getElementById('livroNumero').value = 'Oremos-'; // Limpar campo de livro-número
-            document.getElementById('idioma').value = 'Changana'; // Limpar campo de idioma
+            document.getElementById('idioma').value = 'Portugues'; // Limpar campo de idioma
         }
 
 
